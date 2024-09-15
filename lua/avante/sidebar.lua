@@ -558,7 +558,7 @@ local base_win_options = {
   fillchars = "eob: ",
   winhighlight = "CursorLine:Normal,CursorColumn:Normal",
   winbar = "",
-  statusline = "",
+  statusline = "%#Normal#",
 }
 
 function Sidebar:render_header(winid, bufnr, header_text, hl, reverse_hl)
