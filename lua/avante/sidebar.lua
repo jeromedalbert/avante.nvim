@@ -575,12 +575,12 @@ function Sidebar:render_header(winid, bufnr, header_text, hl, reverse_hl)
   end
 
   if Config.windows.sidebar_header.rounded then
-    winbar_text = winbar_text .. "%#" .. reverse_hl .. "#" .. "" .. "%#" .. hl .. "#"
+    winbar_text = winbar_text .. "%#" .. reverse_hl .. "#" .. "%#" .. hl .. "#"
   else
     winbar_text = winbar_text .. "%#" .. hl .. "#"
   end
   winbar_text = winbar_text .. header_text
-  if Config.windows.sidebar_header.rounded then winbar_text = winbar_text .. "%#" .. reverse_hl .. "#" end
+  if Config.windows.sidebar_header.rounded then winbar_text = winbar_text .. "%#" .. reverse_hl .. "#" end
   winbar_text = winbar_text .. "%#Normal#"
   if Config.windows.sidebar_header.align == "center" then winbar_text = winbar_text .. "%=" end
   api.nvim_set_option_value("winbar", winbar_text, { win = winid })
@@ -588,7 +588,7 @@ end
 
 function Sidebar:render_result()
   if not self.result or not self.result.bufnr or not api.nvim_buf_is_valid(self.result.bufnr) then return end
-  local header_text = "󰭻 Avante"
+  local header_text = "Avante"
   self:render_header(self.result.winid, self.result.bufnr, header_text, Highlights.TITLE, Highlights.REVERSED_TITLE)
 end
 
@@ -617,7 +617,7 @@ function Sidebar:render_input(ask)
   local code_file_fullpath = api.nvim_buf_get_name(self.code.bufnr)
   local code_filename = fn.fnamemodify(code_file_fullpath, ":t")
   local header_text = string.format(
-    "󱜸 %s %s %s (" .. Config.mappings.sidebar.switch_windows .. ": switch focus)",
+    "%s %s %s (" .. Config.mappings.sidebar.switch_windows .. ": switch focus)",
     ask and "Ask" or "Chat with",
     icon,
     code_filename
@@ -625,7 +625,7 @@ function Sidebar:render_input(ask)
 
   if self.code.selection ~= nil then
     header_text = string.format(
-      "󱜸 %s %s %s(%d:%d) (<Tab>: switch focus)",
+      "%s %s %s(%d:%d) (<Tab>: switch focus)",
       ask and "Ask" or "Chat with",
       icon,
       code_filename,
@@ -656,7 +656,7 @@ function Sidebar:render_selected_code()
     selected_code_lines_count = #selected_code_lines
   end
 
-  local header_text = " Selected Code"
+  local header_text = "Selected Code"
     .. (
       selected_code_lines_count > selected_code_max_lines_count
         and " (Show only the first " .. tostring(selected_code_max_lines_count) .. " lines)"
